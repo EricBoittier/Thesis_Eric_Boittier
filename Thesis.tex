@@ -1,0 +1,344 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% This is a (brief) model paper using the achemso class
+%% The document class accepts keyval options, which should include
+%% the target journal and optionally the manuscript type.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \documentclass[journal=jctcce,manuscript=article]{achemso}
+\documentclass[a4paper, 12pt, openany]{book}
+
+
+
+% \setkeys{acs}{articletitle=false}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Place any additional packages needed here.  Only include packages
+%% which are essential, to avoid problems later. Do NOT use any
+%% packages which require e-TeX (for example etoolbox): the e-TeX
+%% extensions are not currently available on the ACS conversion
+%% servers.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[version=3]{mhchem} % Formula subscripts using \ce{}
+\usepackage{chemnum}
+\usepackage{multirow}
+\usepackage{textgreek}
+\usepackage{textcomp}
+\usepackage{setspace}
+\usepackage{afterpage}
+\usepackage{caption}
+\usepackage{floatrow}
+\usepackage{gensymb}
+\usepackage{mathtools}
+	
+\usepackage[bottom=2cm,top=2cm, right=2cm, left=2cm]{geometry}
+
+
+\usepackage{csquotes}
+\usepackage{setspace}
+\doublespacing
+\usepackage{epigraph}
+\renewcommand{\epigraphsize}{\small}
+\renewcommand{\textflush}{flushright} \renewcommand{\sourceflush}{flushright}
+
+\let\originalepigraph\epigraph 
+\renewcommand\epigraph[2]{\originalepigraph{\textit{#1}}{\textsc{#2}}}
+\setlength{\epigraphwidth}{0.5\textwidth}
+
+\renewcommand{\textflush}{flushright} \renewcommand{\sourceflush}{flushright}
+
+
+
+
+\usepackage[most]{tcolorbox}
+
+
+\captionsetup{justification=raggedright,singlelinecheck=false}
+\usepackage[labelfont=bf]{caption}
+\usepackage{makecell}
+
+\usepackage{dblfloatfix}
+\usepackage{framed}
+
+\usepackage{natbib}
+\usepackage[acroymn]{glossaries}
+\usepackage{tabularx} % for 'tabularx' environment
+\usepackage{array}
+
+\usepackage{acro}
+
+\usepackage{tocloft}
+\cftsetrmarg{7em}% Default is 2.55em
+
+% \acsetup{hyperref=true}
+
+\usepackage{enumitem}
+
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{subcaption}
+
+% glossary
+\usepackage{hyperref}
+
+
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\headrulewidth}{.01em} % Headline 
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter{\hspace{0.5cm}}\ #1}{}}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{}
+
+\usepackage[T1]{fontenc}
+\usepackage{titlesec, blindtext, color}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{10pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries\raggedright}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% If issues arise when submitting your manuscript, you may want to
+%% un-comment the next line.  This provides information on the
+%% version of every file you have used.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%\listfiles
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Place any additional macros here.  Please use \newcommand* where
+%% possible, and avoid layout-changing macros (which are not used
+%% when typesetting).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*\mycommand[1]{\texttt{\emph{#1}}}
+
+\DeclareAcronym{PDB}{
+    short = PDB,
+    long = Protein Data Bank
+}
+
+\DeclareAcronym{GAG}{
+    short = GAG ,
+    long = glycosaminoglycan
+}
+
+
+\newcommand{\squeezeup}{\vspace{-2.5mm}}
+
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+
+\vspace*{3cm}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\pagenumbering{gobble}
+
+\includegraphics[]{pictures/PNGLogo.png}
+\vspace{0.2cm}
+
+
+\vspace{2cm}
+\textbf{\LARGE{Development of Computational Tools for the Rational Design of Glycosaminoglycan Mimetics}} \\
+
+by Eric David Boittier \\
+
+\vspace{0.5cm}
+\\
+Supervisor: Associate Professor Vito Ferro
+\\
+Co-supervisor: Doctor Neha S. Gandhi
+\\
+\vspace{3cm}
+\textit{A	Research report submitted for	the	degree	of	Bachelor of	Advanced Science	(Honours)	at
+The	University	of	Queensland	in	May	2018}
+\\School	of	Chemistry	and	Molecular	Biosciences
+\end{center}
+\end{titlepage}
+
+
+\newpage
+
+% \addtolength{\topmargin}{-3in}
+% \addtolength{\textheight}{-3in}
+
+% 	\addtolength{\textwidth}{1in}
+
+% 	\addtolength{\topmargin}{-.5in}
+% 	\addtolength{\textheight}{1.75in}
+	
+
+
+\begin{footnotesize}
+
+{\noindent
+\textbf{Declaration by the author}\\
+This	research	report	is	composed	of	my	original	work,	and	contains	no	material	
+previously	published	or	written	by	another	person	except	where	due	reference	has	been	made	in	the	text.	I	have	clearly	stated	the	contribution	by	others	to	jointly-authored	works	that	I	have	
+included	in	my	report.}\\
+\indent I	have	clearly	stated	the	contribution	of	others	to	my	research	report	as	a	whole,	
+including	statistical	assistance,	survey	design,	data	analysis,	significant	technical	procedures,	professional	editorial	advice,	and	any other	original	research	work	used	or	reported	in	my	
+report.	The	content	of	my	report	is	the	result	of	work	I	have	carried	out	since	the	
+commencement	of	my	honours	research	project	and	does	not	include	a	substantial	part	of	work	
+that	has	been	submitted to	qualify	for	the	award	of	any	other	degree	or	diploma	in	any	
+university	or	other	tertiary	institution.	I	have	clearly	stated	which	parts	of	my	research	report,	if	
+any,	have	been	submitted	to	qualify	for	another	award.\\
+\indent I	acknowledge	that	copyright	of	all	material	contained	in	my	research	report	resides	with	
+the	copyright	holder(s)	of	that	material.
+\\
+\\
+\textbf{Statement	of	Contributions	to	Jointly	Authored Works	Contained	in	the	Research	Report}
+\\
+No	jointly-authored	works.
+\\
+\\
+\textbf{Statement	of	Contributions	by	Others	to	the	Research	Report	as	a	Whole}
+\\
+No	contributions	by	others.	or
+List	the	significant	and	substantial	inputs	made	by	others	to	the	research,	work	and	writing	
+represented	and/or	reported	in	the	research	report.	These	would	include	significant	
+contributions	to:	the	conception	and	design	of	the	project;	non-routine	technical	work;	analysis	
+and	interpretation	of	research	data;	drafting	significant	parts	of	the	work	or	critically	revising	it	
+so	as	to	contribute	to	the	interpretation.
+\\
+\\
+\textbf{Published	Works	by	the	Author	Incorporated	into	the	Research}\\
+None.	or
+List	the	publications	using	the	standard	citation	format	for	your	discipline	followed	by	a	short	
+statement	about	where	those	published	works	have	been	incorporated	into	the	research	report
+proposal.	For	example:
+Citation	format	for	paper	– Incorporated	as	Chapter	3.
+Citation	format	for	paper – Partially	incorporated	as	paragraphs	in	Chapters	2	and	5.
+\\
+\\
+\textbf{Additional	Published	Works	by	the	Author	Relevant to	the	Research	Report	or	but	not	Forming Part of it}\\	
+None.	or
+List	the	publications	using	the	standard	citation	format	for	your	discipline.	The	intention	is	give	
+your	research	report	assessors	a	summary	of	all	the	academic	writing	that	has	come	out	of	your	
+project,	not	to	provide	a	bibliography	of	all	your	published	work.	
+\\
+\\
+
+\textbf{Signature	of	Author: \rule{4cm}{0.4pt}       Date: \rule{4cm}{0.4pt}}
+\\
+\\
+\textbf{Principal	Supervisor	Agreement}
+\\
+I	have	read	the	final	report	and	agree	with	the	student’s	declaration.
+\\
+\\
+\textbf{Signature	of	Principal	Supervisor: \rule{4cm}{0.4pt}        Date: \rule{4cm}{0.4pt}}
+
+\end{footnotesize}
+\newpage
+\pagenumbering{roman} 
+\chapter*{Acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% The manuscript does not need to include \maketitle, which is
+%% executed automatically.  The document should begin with an
+%% abstract, if appropriate.  If one is given and should not be, the
+%% contents will be gobbled.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+{\setstretch{2} 
+\renewcommand{\contentsname}{Table of Contents}
+% \renewcommand{\thesubfigure}{\Alph{subfigure}}
+
+\tableofcontents
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+\chapter*{Acronyms}
+\addcontentsline{toc}{chapter}{Acronyms}
+\begin{multicols}{2}
+\setstretch{1}
+\DeclareInstance{acro-title}{empty}{sectioning}{name-format =}
+\printacronyms[heading=none]
+
+\end{multicols}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Start the main part of the manuscript here.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\pagenumbering{arabic} 
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+\newpage
+
+\chapter{Computer Aided Drug Design \& Glycosaminoglycans}
+\section{Adrift in Chemical Space}
+
+\newpage
+\section{Research Aims}
+{\setstretch{1.8}
+The aim of this project was to increase the accuracy of \textit{Vina-Carb} when predicting the structure of \acs{GAG}--Protein complexes by optimizing and developing new and existing scoring functions.
+Alongside this aim, analyses of crystallographic data of \acs{GAG}--Protein complexes available in the \ac{PDB} were undertaken. 
+Towards these goals, bespoke analytical tools necessary for this task were developed from new and existing software. This code was made entirely open-source. 
+Tools from this code base considered particularly serviceable to the computational glycoscience community were hosted online as the Web-accessible server, \textit{GlycaTorch}, which aims to `shine a light on carbohydrate--protein interactions'.
+}
+
+\chapter{Methods Development in Protein-Ligand Docking}
+
+\chapter{Data Mining the Protein Data Bank for Glycosaminoglycan Interactions}
+\section{Abstract}
+
+\section{Motivation}
+
+\section{Ring Conformations and Glycosidic Torsions}
+\subsection{Methods}
+
+\subsection{Results and Discussion}
+
+\section{Intermolecular Interactions}
+\subsection{Methods}
+
+\subsection{Results and Discussion}
+
+\chapter{Development of a Glycosaminoglycan Specific Scoring Function}
+\section{Abstract}
+
+\section{Motivation}
+
+\section{Glycosidic Torsion Energy Penalty Functions}
+\subsection{Methods}
+\subsection{Results and Discussion}
+
+\chapter{Benchmarking Docking Software for Glycosaminoglycans}
+\section{Abstract}
+\section{Methods}
+\section{Results and Discussion}
+
+\chapter{GlycaTorch Web Server}
+
+
+
+\newpage
+{\setstretch{-1}
+\bibliography{ref.bib}
+}
+
+%%%% un-comment for appendix
+% \newpage
+% \section{Appendix}
+
+
+\end{document}
+
