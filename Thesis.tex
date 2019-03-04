@@ -20,7 +20,8 @@
 \usepackage{floatrow}
 \usepackage{gensymb}
 \usepackage{mathtools}
-	
+\usepackage[outdir=./]{epstopdf}
+
 \usepackage[bottom=2cm,top=2cm, right=2cm, left=2cm, headsep=5pt]{geometry}
 
 
@@ -211,7 +212,7 @@ None
 \textbf{Additional	Published	Works	by	the	Author	Relevant to	the	Research Report	or	but	not	Forming Part of it}\\	
 Pathway Bifurcation in the (4 + 3)/(5 + 2)-Cycloaddition of Butadiene and Oxidopyrylium Ylides: The Significance of Molecular Orbital Isosymmetry
 Jed M. Burns and Eric D. Boittier
-The Journal of Organic Chemistry Article ASAP
+\textit{J. Org. Chem.}
 DOI: 10.1021/acs.joc.8b03236
 \\
 \\
@@ -327,7 +328,7 @@ Structures from \ac{PDB} codes 5W1O and 5DNF were also
 \subsection{Carbohydrate Structure Analysis}
 
 \noindent \textbf{Ring Conformations}\\
-For N--membered rings, crystallographic, NMR, \ac{MD} or \ac{QM} theoretical mechanistic studies, among other fields, all require a standardized method of describing ring conformations. Historically, for rings composed of 6 atoms, six classical ring shapes are commonly assigned: chair (C), skew boat (S), boat (B), twist (T), envelope (E) and half boat (H). For sugars, depending on which atoms occupy the apex and/or bottom of the structure, the atom name is given with a superscript or subscript, respectively. This provides the basis of the 38 IUPAC standard ring conformations, which include, for example, the two most common and the typically low energy conformers, $^{4}C_{1}$ and $^{1}C_{4}$. These assignments are discrete and easy to visualize; however, they are highly idealized and unsuitable for describing dynamic structures, among other tasks. For this reason, a mathematically ``continuous'' description of ring conformations, ideally as system that can compliment the standard IUPAC descriptions, is also required. 
+For analysis involving N--membered rings, relavent to fields such as crystallographic, NMR, \ac{MD} or \ac{QM} theoretical mechanistic studies for example, a formal method for describing ring conformations may be required. Historically, for rings composed of 6 atoms, six classical ring shapes are commonly assigned: chair (C), skew boat (S), boat (B), twist (T), envelope (E) and half boat (H). For sugars, depending on which atoms occupy the apex and/or bottom of the structure, the atom name is given with a superscript or subscript, respectively. This provides the basis of the 38 IUPAC standard ring conformations, which include, for example, the two most common and the typically low energy conformers, $^{4}C_{1}$ and $^{1}C_{4}$. These assignments are discrete and easy to visualize; however, they are idealized and unsuitable for describing dynamic structures, among other tasks. For this reason, a mathematically ``continuous'' description of ring conformations, ideally as system that can compliment the standard IUPAC descriptions, is also required. 
 \\
 \\
 \noindent \textbf{Glycosidic Torsions}\\
@@ -436,7 +437,7 @@ These structures were minimized at the HF/6-31+G(d) level of theory. The dihedra
 For each glyocosidic torsional energy profile, a series of Gaussian curves (equation \ref{eq:2}) were used to model the data,  where $x$ is the glycosidic torsion and $a_{i}$, $b_{i}$, and $c_{i}$ correspond to the magnitude, width, and mid-point of each individual Gaussian distribution, respectively.
 \begin{equation} \label{eq:2}
 \begin{multlined}
-$f(x)=\sum^{N}_{i=1}a_{i}e^{-\frac{(x-b_{i})^{2}}{c_{i}}} \quad \quad 0 \leq x < 360$
+$$f(x)=\sum^{N}_{i=1}a_{i}e^{-\frac{(x-b_{i})^{2}}{c_{i}}} \quad \quad 0 \leq x < 360$$
 \end{multlined}
 \end{equation}
 \noindent This function was fit to the data using a least squares optimization, available in the Scipy library in the Python programming language, with use of the Levenberg-Marquardt Algorithm. 
@@ -489,19 +490,18 @@ $f(x)=\sum^{N}_{i=1}a_{i}e^{-\frac{(x-b_{i})^{2}}{c_{i}}} \quad \quad 0 \leq x <
 
 \section{Methods}
 \subsection{Docking}
-\noindent \textbf{Structure Preparation}\\
+\noindent \textbf{Structure Preparation}
 
 \noindent \textbf{Docking Protocol}\\
 \noindent \textit{Statistical Considerations}\\
 In an effort to determine a statistically significant sample size, an initial trial of docking, using the default \ac{VC} parameters (\textit{CHI cutoff} = 0, \textit{CHI coeff} = 1) for a subset of structures containing sugars in a $^{1}C_{4}$ or $^{4}C_{1}$ ring conformation, exclusively. Docking was repeated 36 times, with \ac{ADV} parameters \textit{exhaustiveness} and \textit{energy range} set to 80 and 12, respectively. The top five docked poses produced by \ac{VC} were scored by \ac{RMSD} from the native crystal pose. From these docking calculations, a mean standard error ($E$) of 0.32 \ac{RMSD} and mean standard deviation ($\sigma$) of 0.21 \ac{RMSD} were observed. To produce a statistically significant result (i.e. $p < 0.5, Z = 1.96$), the minimum sample size required can be calculated by:
 \begin{equation}  \label{eq:statistical_considerations}
-    n_{0} = \Big(\frac{Z \sigma}{E}\Big)^{2} = \Big(\frac{1.96 \times 0.21}{0.32}\Big)^{2} = 9.83 \approx 10
+   n_{0} = \Big(\frac{Z \sigma}{E}\Big)^{2} = \Big(\frac{1.96 \times 0.21}{0.32}\Big)^{2} = 9.83 \approx 10 
 \end{equation}
 \\
 \\
 
-\subsection{Analysis}\\
-
+\subsection{Analysis}
 \section{Results and Discussion}
 
 \subsection{Comparing the Performance of Autodock Vina and Vina-Carb}
